@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library System</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>📚 Library System</h1>
+        <input type="text" id="searchInput" placeholder="Search by title, author, or ID">
+        <button onclick="searchBooks()">🔍 Search</button>
+        <button onclick="showLoginForm()">🔑 Login</button>
+        <button onclick="logout()" id="logoutBtn" style="display:none;">Logout</button>
+    </header>
+
+    <!-- 📌 User Authentication (Login & Register) -->
+    <div id="authContainer">
+        <div id="loginForm" style="display:none;">
+            <h2>🔑 Login</h2>
+            <input type="email" id="loginEmail" placeholder="Email">
+            <input type="password" id="loginPassword" placeholder="Password">
+            <button onclick="loginUser()">Login</button>
+            <p>New user? <a href="#" onclick="showRegisterForm()">Register</a></p>
+        </div>
+
+        <div id="registerForm" style="display:none;">
+            <h2>📝 Register</h2>
+            <input type="text" id="registerName" placeholder="Name">
+            <input type="email" id="registerEmail" placeholder="Email">
+            <input type="password" id="registerPassword" placeholder="Password">
+            <button onclick="registerUser()">Register</button>
+            <p>Already have an account? <a href="#" onclick="showLoginForm()">Login</a></p>
+        </div>
+    </div>
+
+    <!-- 📌 Book List -->
+    <div id="bookList" class="book-container">
+        <!-- Books will be dynamically loaded here -->
+    </div>
+
+    <!-- 📌 Book Details (Hidden Initially) -->
+    <div id="bookDetails" style="display:none;">
+        <h2 id="bookTitle"></h2>
+        <p><strong>Author:</strong> <span id="bookAuthor"></span></p>
+        <p><strong>Description:</strong> <span id="bookDescription"></span></p>
+        <p><strong>Available Copies:</strong> <span id="bookCopies"></span></p>
+        <button onclick="borrowBook()">📖 Borrow Book</button>
+        <button onclick="returnBook()">🔄 Return Book</button>
+        <button onclick="goBack()">⬅ Back</button>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

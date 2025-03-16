@@ -82,6 +82,7 @@ async function viewBookDetails(bookId) {
     const book = await response.json();
 
     document.getElementById("bookTitle").innerText = book.title;
+    document.getElementById("bookTitle").dataset.bookId = book._id;
     document.getElementById("bookAuthor").innerText = book.author;
     document.getElementById("bookDescription").innerText = book.description;
     document.getElementById("bookCopies").innerText = book.copiesAvailable;

@@ -17,7 +17,7 @@ async function registerUser() {
     const email = document.getElementById("registerEmail").value;
     const password = document.getElementById("registerPassword").value;
 
-    const response = await fetch(`${apiUrl}/users/register`, {
+    const response = await fetch(`${apiUrl}/api/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, password })
@@ -33,7 +33,7 @@ async function loginUser() {
     const email = document.getElementById("loginEmail").value;
     const password = document.getElementById("loginPassword").value;
 
-    const response = await fetch(`${apiUrl}/users/login`, {
+    const response = await fetch(`${apiUrl}/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password })
@@ -53,7 +53,7 @@ async function loginUser() {
 
 // 🚀 Fetch Books
 async function fetchBooks() {
-    const response = await fetch(`${apiUrl}/books`);
+    const response = await fetch(`${apiUrl}/api/books`);
     const books = await response.json();
     displayBooks(books);
 }
@@ -78,7 +78,7 @@ function displayBooks(books) {
 
 // 📖 View Book Details
 async function viewBookDetails(bookId) {
-    const response = await fetch(`${apiUrl}/books/${bookId}`);
+    const response = await fetch(`${apiUrl}/api/books/${bookId}`);
     const book = await response.json();
 
     document.getElementById("bookTitle").innerText = book.title;
@@ -103,6 +103,21 @@ async function borrowBook() {
     const data = await response.json();
     alert(data.message);
     fetchBooks();
+}
+
+// Return a Book
+async function returnBook() {
+    const bookId = document.getElementById("bookTitle").dataset.bookId;
+    const response = await fetch(`${apiUrl}/return`, {
+       method: "POST",
+       headers: { "Content-Type": "application/json" },
+       body: JSON.stringify({ bookId })
+    });
+
+    const data = await response.json();
+    alert(data.message);
+    fetchBooks();
+    goBack();
 }
 
 // ⬅ Go Back

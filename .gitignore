@@ -1,0 +1,824 @@
+:root {
+    --primary: #007bff;
+    --success: #28a745;
+    --warning: #ffc107;
+    --danger: #dc3545;
+    --light: #f8f9fa;
+    --dark: #343a40;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--light);
+    color: var(--dark);
+}
+
+nav {
+    background: var(--primary);
+    padding: 1rem;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+}
+
+nav ul li a, nav ul li button {
+    color: white;
+    text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+nav ul li button:hover, nav ul li a:hover {
+    text-decoration: underline;
+}
+
+.view {
+    display: none;
+    padding: 20px;
+    animation: fade 0.3s ease-in-out;
+}
+
+.view.active {
+    display: block;
+}
+
+/* 🏠 Home Page Styling */
+#viewHome {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+#viewHome h2 {
+    font-size: 3rem;
+    margin-top: 60px;
+    color: var(--primary);
+}
+
+#viewHome p {
+    margin: 20px 0;
+    font-size: 1.2rem;
+}
+
+#viewHome button {
+    padding: 12px 20px;
+    font-size: 1rem;
+    background: var(--success);
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#viewHome button:hover {
+    background: var(--dark);
+}
+
+/* Book Grid */
+.book-card {
+    background: white;
+    padding: 15px;
+    margin: 10px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    width: 220px;
+}
+
+.book-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Forms */
+.auth-form input,
+.return-form input {
+    display: block;
+    width: 80%;
+    margin: 10px auto;
+    padding: 10px;
+}
+
+.auth-form button,
+.return-form button {
+    width: 50%;
+    padding: 10px;
+    margin-top: 10px;
+    background: var(--success);
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+/* Loader */
+#loader {
+    position: fixed;
+    top:0; left:0;
+    width: 100%; height: 100%;
+    background: rgba(255,255,255,0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+.spinner {
+    border: 6px solid #ccc;
+    border-top: 6px solid var(--primary);
+    border-radius: 50%;
+    width: 50px; height: 50px;
+    animation: spin 0.8s linear infinite;
+}
+/* Borrow Form */
+.borrow-form input {
+    display: block;
+    width: 80%;
+    margin: 10px auto;
+    padding: 10px;
+}
+
+.borrow-form button {
+    width: 50%;
+    padding: 10px;
+    margin-top: 10px;
+    background: var(--primary);
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.borrow-form button:hover {
+    background: var(--dark);
+}
+
+.view{
+    display: none;
+}
+
+#dashboardView {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.navbar {
+    background-color: #f8f8f8;
+    padding: 15px;
+    border-bottom: 1px solid #ccc;
+}
+
+.navbar strong {
+    font-size: 1.2em;
+}
+
+.navbar nav a {
+    margin-right: 10px;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+.navbar nav a:hover {
+    color: #007bff;
+}
+
+#dashboardContent {
+    margin-top: 20px;
+}
+
+
+.toast {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--dark);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    opacity: 0.9;
+    z-index: 1001;
+}
+.toast.success { background: var(--success); }
+.toast.error { background: var(--danger); }
+.toast.info { background: var(--primary); }
+
+
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+
+@media(max-width: 768px){
+    nav ul { flex-direction: column; gap: 10px; }
+}
+
+
+// // const API_BASE = 'https://library-api-s5aw.onrender.com'; // Your backend URL
+
+// // const views = {
+// //     home: document.getElementById('viewHome'),
+// //     books: document.getElementById('viewBooks'),
+// //     return: document.getElementById('viewReturn'),
+// //     borrow: document.getElementById('viewBorrow'),
+// //     login: document.getElementById('viewAuth'),
+// //     details: document.getElementById('viewDetails')
+// // };
+
+// // const loader = document.getElementById('loader');
+// // const logoutBtn = document.getElementById('logoutBtn');
+
+// // window.onload = () => {
+// //     route();
+// //     if (localStorage.getItem('token')) {
+// //         logoutBtn.style.display = 'inline';
+// //         document.getElementById('navLogin').style.display = 'none';
+// //         showUserBanner();
+// //     } else {
+// //         logoutBtn.style.display = 'none';
+// //         document.getElementById('navLogin').style.display = 'inline';
+// //     }
+// // };
+
+// // window.addEventListener('hashchange', route);
+
+// // function route() {
+// //     const path = window.location.hash.slice(2) || '';
+// //     hideAllViews();
+// //     switch (path) {
+// //         case 'books': showBooks(); break;
+// //         case 'borrow': showBorrow(); break;
+// //         case 'return': showReturn(); break;
+// //         case 'login': showAuth(); break;
+// //         default: showHome(); break;
+// //     }
+// // }
+
+// // function hideAllViews() {
+// //     Object.values(views).forEach(view => view.classList.remove('active'));
+// // }
+
+// // function showUserBanner() {
+// //     const banner = document.getElementById('userBanner');
+// //     const userId = localStorage.getItem('userId');
+// //     if (userId) {
+// //         banner.innerHTML = `Logged in as <strong>${userId}</strong>`;
+// //         banner.style.display = 'block';
+// //     }
+// // }
+
+// // // HOME
+// // function showHome() {
+// //     views.home.classList.add('active');
+// //     views.home.innerHTML = `
+// //         <h2>Welcome to MyLibrary 📚</h2>
+// //         <p>Manage your library effortlessly. Borrow, Return & Explore books with ease!</p>
+// //         <button onclick="window.location.hash = '#/books'">Browse Books</button>
+// //     `;
+// // }
+
+// // // BOOKS (protected route now with token header)
+// // async function showBooks() {
+// //     views.books.classList.add('active');
+// //     loader.style.display = 'flex';
+// //     try {
+// //         const token = localStorage.getItem('token');
+// //         const res = await fetch(`${API_BASE}/api/books`, {
+// //             headers: { 
+// //                 'Authorization': token ? `Bearer ${token}` : ''
+// //             }
+// //         });
+// //         const books = await res.json();
+// //         loader.style.display = 'none';
+// //         if (!res.ok) return showToast(books.msg || 'Failed to load books', 'error');
+// //         views.books.innerHTML = `
+// //             <h2>Available Books</h2>
+// //             <div class="book-grid">
+// //                 ${books.map(book => `
+// //                     <div class="book-card">
+// //                         <h4>${book.title}</h4>
+// //                         <p>Author: ${book.author}</p>
+// //                         <p>ID: ${book._id}</p>
+// //                         <p>Copies: ${book.availableCopies}</p>
+// //                     </div>
+// //                 `).join('')}
+// //             </div>
+// //         `;
+// //     } catch (err) {
+// //         loader.style.display = 'none';
+// //         showToast('Network Error!', 'error');
+// //     }
+// // }
+
+// // // BORROW BOOK
+// // function showBorrow() {
+// //     views.borrow.classList.add('active');
+// //     views.borrow.innerHTML = `
+// //         <h2>Borrow Book</h2>
+// //         <form class="borrow-form" onsubmit="borrowBook(event)">
+// //             <input type="text" id="returnUserId" placeholder="User ID" required>
+// //             <input type="text" id="dueDate" placeholder="Due Date (YYYY-MM-DD)" required>
+// //             <button type="submit">Borrow Book</button>
+// //         </form>
+// //     `;
+// // }
+
+// // // RETURN BOOK
+// // function showReturn() {
+// //     views.return.classList.add('active');
+// //     views.return.innerHTML = `
+// //         <h2>Return Book</h2>
+// //         <form class="return-form" onsubmit="returnBook(event)">
+// //             <input type="text" id="returnBookId" placeholder="Book ID" required>
+// //             <input type="text" id="borrowId" placeholder="Borrow ID" required>
+// //             <button type="submit">Return Book</button>
+// //         </form>
+// //     `;
+// // }
+
+// // // AUTH FORM
+// // function showAuth() {
+// //     if (localStorage.getItem('token')) {
+// //         window.location.hash = '#/books';
+// //         return;
+// //     }
+// //     views.login.classList.add('active');
+// //     views.login.innerHTML = `
+// //         <h2>Login</h2>
+// //         <form class="auth-form" onsubmit="login(event)">
+// //             <input type="email" id="loginEmail" placeholder="Email" required>
+// //             <input type="password" id="loginPassword" placeholder="Password" required>
+// //             <button type="submit">Login</button>
+// //         </form>
+// //         <hr>
+// //         <h2>Register</h2>
+// //         <form class="auth-form" onsubmit="register(event)">
+// //             <input type="text" id="registerName" placeholder="Name" required>
+// //             <input type="email" id="registerEmail" placeholder="Email" required>
+// //             <input type="password" id="registerPassword" placeholder="Password" required>
+// //             <button type="submit">Register</button>
+// //         </form>
+// //     `;
+// // }
+
+// // // LOGIN
+// // async function login(e) {
+// //     e.preventDefault();
+// //     const email = document.getElementById('loginEmail').value;
+// //     const password = document.getElementById('loginPassword').value;
+// //     loader.style.display = 'flex';
+// //     try {
+// //         const res = await fetch(`${API_BASE}/api/login`, {
+// //             method: 'POST',
+// //             headers: {
+// //                 'Content-Type': 'application/json'
+// //             },
+// //             body: JSON.stringify({ email, password })
+// //         });
+// //         const data = await res.json();
+// //         loader.style.display = 'none';
+// //         if (res.ok) {
+// //             localStorage.setItem('token', data.token);
+// //             localStorage.setItem('userId', data.userId);
+// //             showToast('Login Successful!', 'success');
+// //             window.location.hash = '#/books';
+// //             logoutBtn.style.display = 'inline';
+// //             document.getElementById('navLogin').style.display = 'none';
+// //             showUserBanner();
+// //         } else {
+// //             showToast(data.msg || 'Login Failed', 'error');
+// //         }
+// //     } catch (err) {
+// //         loader.style.display = 'none';
+// //         showToast('Login Error', 'error');
+// //     }
+// // }
+
+// // // REGISTER
+// // async function register(e) {
+// //     e.preventDefault();
+// //     const name = document.getElementById('registerName').value;
+// //     const email = document.getElementById('registerEmail').value;
+// //     const password = document.getElementById('registerPassword').value;
+// //     loader.style.display = 'flex';
+// //     try {
+// //         const res = await fetch(`${API_BASE}/api/register`, {
+// //             method: 'POST',
+// //             headers: { 'Content-Type': 'application/json' },
+// //             body: JSON.stringify({ name, email, password })
+// //         });
+// //         const data = await res.json();
+// //         loader.style.display = 'none';
+// //         if (res.ok) {
+// //             showToast('User Registered Successfully!', 'success');
+// //         } else {
+// //             showToast(data.msg || 'User Already Exists', 'error');
+// //         }
+// //     } catch (err) {
+// //         loader.style.display = 'none';
+// //         showToast('Registration Error', 'error');
+// //     }
+// // }
+
+// // // LOGOUT
+// // function logout(e) {
+// //     e.preventDefault();
+// //     localStorage.removeItem('token');
+// //     localStorage.removeItem('userId');
+// //     window.location.hash = '#/login';
+// //     logoutBtn.style.display = 'none';
+// //     document.getElementById('navLogin').style.display = 'inline';
+// //     document.getElementById('userBanner').style.display = 'none';
+// //     showToast('Logged Out', 'success');
+// // }
+
+// // // 🔔 Toast helper (simple)
+// // function showToast(msg, type) {
+// //     alert(`${type.toUpperCase()}: ${msg}`);
+// // }
+
+
+// const API_BASE = 'https://library-api-s5aw.onrender.com'; // Your backend URL
+
+// const views = {
+//     home: document.getElementById('viewHome'),
+//     books: document.getElementById('viewBooks'),
+//     return: document.getElementById('viewReturn'),
+//     borrow: document.getElementById('viewBorrow'),
+//     login: document.getElementById('viewAuth'),
+//     details: document.getElementById('viewDetails'),
+//     dashboard: document.getElementById('viewDashboard'),
+//     register: document.getElementById('viewRegister')
+// };
+
+// const loader = document.getElementById('loader');
+// const logoutBtn = document.getElementById('logoutBtn');
+
+// window.onload = () => {
+//     route();
+//     if (localStorage.getItem('token')) {
+//         logoutBtn.style.display = 'inline';
+//         document.getElementById('navLogin').style.display = 'none';
+//         document.getElementById('navRegister').style.display = 'none';
+//         showUserBanner();
+//     } else {
+//         logoutBtn.style.display = 'none';
+//         document.getElementById('navLogin').style.display = 'inline';
+//         document.getElementById('navRegister').style.display = 'inline';
+//     }
+// };
+
+// window.addEventListener('hashchange', route);
+
+// function route() {
+//     const path = window.location.hash.slice(2) || '';
+//     hideAllViews();
+//     switch (path) {
+//         case 'books': showBooks(); break;
+//         case 'borrow': showBorrow(); break;
+//         case 'return': showReturn(); break;
+//         case 'login': showAuth(); break;
+//         case 'register': showRegister(); break;
+//         case 'dashboard': showDashboard(); break;
+//         default: showHome(); break;
+//     }
+// }
+
+// function hideAllViews() {
+//     Object.values(views).forEach(view => view.classList.remove('active'));
+// }
+
+// function showUserBanner() {
+//     const banner = document.getElementById('userBanner');
+//     const userId = localStorage.getItem('userId');
+//     if (userId) {
+//         banner.innerHTML = `Logged in as <strong>${userId}</strong>`;
+//         banner.style.display = 'block';
+//     }
+// }
+
+// // HOME
+// function showHome() {
+//     views.home.classList.add('active');
+//     views.home.innerHTML = `
+//         <h2>Welcome to MyLibrary 📚</h2>
+//         <p>Manage your library effortlessly. Borrow, Return & Explore books with ease!</p>
+//         <button onclick="window.location.hash = '#/books'">Browse Books</button>
+//     `;
+// }
+
+// // BOOKS
+// async function showBooks() {
+//     views.books.classList.add('active');
+//     loader.style.display = 'flex';
+//     try {
+//         const token = localStorage.getItem('token');
+//         const res = await fetch(`${API_BASE}/api/books`, {
+//             headers: {
+//                 'Authorization': token ? `Bearer ${token}` : ''
+//             }
+//         });
+//         const books = await res.json();
+//         loader.style.display = 'none';
+//         if (!res.ok) return showToast(books.msg || 'Failed to load books', 'error');
+//         views.books.innerHTML = `
+//             <h2>Available Books</h2>
+//             <div class="book-grid">
+//                 ${books.map(book => `
+//                     <div class="book-card">
+//                         <h4>${book.title}</h4>
+//                         <p>Author: ${book.author}</p>
+//                         <p>ID: ${book._id}</p>
+//                         <p>Copies: ${book.availableCopies}</p>
+//                     </div>
+//                 `).join('')}
+//             </div>
+//         `;
+//     } catch (err) {
+//         loader.style.display = 'none';
+//         showToast('Network Error!', 'error');
+//     }
+// }
+
+// // BORROW BOOK
+// function showBorrow() {
+//     views.borrow.classList.add('active');
+//     views.borrow.innerHTML = `
+//         <h2>Borrow Book</h2>
+//         <form class="borrow-form" onsubmit="borrowBook(event)">
+//             <input type="text" id="borrowBookId" placeholder="Book ID" required>
+//             <input type="text" id="borrowerId" placeholder="User ID" required>
+//             <input type="date" id="dueDate" placeholder="Due Date (YYYY-MM-DD)" required>
+//             <button type="submit">Borrow Book</button>
+//         </form>
+//     `;
+// }
+
+// // RETURN BOOK
+// async function returnBook(bookId) {
+//     loader.style.display = 'flex';
+//     try {
+//         const res = await fetch(`${API_BASE}/api/return/${bookId}`, {
+//             method: 'POST',
+//             headers: { 
+//                 'Content-Type': 'application/json',
+//                 'Authorization': `Bearer ${localStorage.getItem('token')}`
+//             }
+//         });
+//         const data = await res.json();
+//         loader.style.display = 'none';
+        
+//         if (res.ok) {
+//             showToast('Book returned successfully!', 'success');
+//             // Optionally refresh book list or borrowed books list
+//             fetchBorrowedBooks();
+//         } else {
+//             showToast(data.msg || 'Unable to return book.', 'error');
+//         }
+//     } catch (err) {
+//         loader.style.display = 'none';
+//         showToast('Error returning book.', 'error');
+//         console.error('Return Book Error:', err);
+//     }
+// }
+
+
+// // AUTH FORM
+// function showAuth() {
+//     if (localStorage.getItem('token')) {
+//         window.location.hash = '#/books';
+//         return;
+//     }
+//     views.login.classList.add('active');
+//     views.login.innerHTML = `
+//         <h2>Login</h2>
+//         <form class="auth-form" onsubmit="login(event)">
+//             <input type="email" id="loginEmail" placeholder="Email" required>
+//             <input type="password" id="loginPassword" placeholder="Password" required>
+//             <button type="submit">Login</button>
+//         </form>
+//     `;
+// }
+
+// // REGISTER FORM
+// function showRegister() {
+//     views.register.classList.add('active');
+//     views.register.innerHTML = `
+//         <h2>Register</h2>
+//         <form class="auth-form" onsubmit="register(event)">
+//             <input type="text" id="registerName" placeholder="Name" required>
+//             <input type="email" id="registerEmail" placeholder="Email" required>
+//             <input type="password" id="registerPassword" placeholder="Password" required>
+//             <button type="submit">Register</button>
+//         </form>
+//     `;
+// }
+
+// // DASHBOARD
+// function showDashboard() {
+//     views.dashboard.classList.add('active');
+//     views.dashboard.innerHTML = `<h2>Dashboard (Coming Soon)</h2>`;
+// }
+
+// // LOGIN
+// async function login(e) {
+//     e.preventDefault();
+//     const email = document.getElementById('loginEmail').value;
+//     const password = document.getElementById('loginPassword').value;
+//     loader.style.display = 'flex';
+//     try {
+//         const res = await fetch(`${API_BASE}/api/login`, {
+//             method: 'POST',
+//             headers: {
+//                 'Content-Type': 'application/json'
+//             },
+//             body: JSON.stringify({ email, password })
+//         });
+//         const data = await res.json();
+//         loader.style.display = 'none';
+//         if (res.ok) {
+//             localStorage.setItem('token', data.token);
+//             localStorage.setItem('userId', data.userId);
+//             showToast('Login Successful!', 'success');
+//             window.location.hash = '#/books';
+//             logoutBtn.style.display = 'inline';
+//             document.getElementById('navLogin').style.display = 'none';
+//             document.getElementById('navRegister').style.display = 'none';
+//             showUserBanner();
+//         } else {
+//             showToast(data.msg || 'Login Failed', 'error');
+//         }
+//     } catch (err) {
+//         loader.style.display = 'none';
+//         showToast('Login Error', 'error');
+//     }
+// }
+
+// // REGISTER
+// async function register(e) {
+//     e.preventDefault();
+    
+//     const name = document.getElementById('registerName').value.trim();
+//     const email = document.getElementById('registerEmail').value.trim();
+//     const password = document.getElementById('registerPassword').value.trim();
+
+//     // Basic validation
+//     if (!name || !email || !password) {
+//         showToast('Please fill all fields.', 'error');
+//         return;
+//     }
+
+//     loader.style.display = 'flex';
+
+//     try {
+//         const res = await fetch(`${API_BASE}/api/register`, {
+//             method: 'POST',
+//             headers: { 'Content-Type': 'application/json' },
+//             body: JSON.stringify({ name, email, password })
+//         });
+
+//         const data = await res.json();
+//         loader.style.display = 'none';
+
+//         if (res.ok) {
+//             showToast('Registration Successful! Please login.', 'success');
+//             document.getElementById('registerForm').reset();
+//             window.location.hash = '#/login';
+//         } else {
+//             showToast(data.msg || 'User already exists.', 'error');
+//         }
+//     } catch (err) {
+//         loader.style.display = 'none';
+//         showToast('Network error. Please try again.', 'error');
+//         console.error('Register Error:', err);
+//     }
+// }
+
+
+// // LOGIN
+// async function login(e) {
+//     e.preventDefault();
+//     const email = document.getElementById('loginEmail').value;
+//     const password = document.getElementById('loginPassword').value;
+//     loader.style.display = 'flex';
+//     try {
+//         const res = await fetch(`${API_BASE}/api/login`, {
+//             method: 'POST',
+//             headers: { 'Content-Type': 'application/json' },
+//             body: JSON.stringify({ email, password })
+//         });
+//         const data = await res.json();
+//         loader.style.display = 'none';
+//         if (res.ok) {
+//             localStorage.setItem('token', data.token);
+//             showToast('Login Successful!', 'success');
+//             window.location.hash = '#/books';
+//             checkAuth();
+//         } else {
+//             showToast(data.msg || 'Invalid Credentials', 'error');
+//         }
+//     } catch (err) {
+//         loader.style.display = 'none';
+//         showToast('Something went wrong. Please try again.', 'error');
+//         console.error(err);
+//     }
+// }
+
+// // LOGOUT
+// logoutBtn.addEventListener('click', () => {
+//     localStorage.removeItem('token');
+//     showToast('Logged Out Successfully!', 'success');
+//     window.location.hash = '#/login';
+//     checkAuth();
+// });
+
+// // Fetch Books
+// async function fetchBooks(query = '') {
+//     loader.style.display = 'flex';
+//     const token = localStorage.getItem('token');
+//     try {
+//         let url = `${API_BASE}/api/books`;
+//         if (query) url += `?search=${query}`;
+
+//         const res = await fetch(url, {
+//             headers: {
+//                 'Authorization': `Bearer ${token}`
+//             }
+//         });
+//         const data = await res.json();
+//         loader.style.display = 'none';
+//         if (res.ok) {
+//             displayBooks(data.books);
+//         } else {
+//             showToast(data.msg || 'Failed to fetch books', 'error');
+//         }
+//     } catch (err) {
+//         loader.style.display = 'none';
+//         showToast('Error fetching books.', 'error');
+//         console.error(err);
+//     }
+// }
+
+// // Display books on the UI
+// function displayBooks(books) {
+//     bookList.innerHTML = '';
+//     if (!books.length) {
+//         bookList.innerHTML = '<p>No books found.</p>';
+//         return;
+//     }
+//     books.forEach(book => {
+//         const div = document.createElement('div');
+//         div.classList.add('book-card');
+//         div.innerHTML = `
+//             <h3>${book.title}</h3>
+//             <p><strong>Author:</strong> ${book.author}</p>
+//             <p><strong>ID:</strong> ${book.bookId}</p>
+//             <p><strong>Available:</strong> ${book.available ? 'Yes' : 'No'}</p>
+//             <button onclick="borrowBook('${book._id}')" ${!book.available ? 'disabled' : ''}>Borrow</button>
+//         `;
+//         bookList.appendChild(div);
+//     });
+// }
+
+// // Borrow Book
+// async function borrowBook(bookId) {
+//     loader.style.display = 'flex';
+//     const token = localStorage.getItem('token');
+//     try {
+//         const res = await fetch(`${API_BASE}/api/borrow/${bookId}`, {
+//             method: 'POST',
+//             headers: {
+//                 'Authorization': `Bearer ${token}`
+//             }
+//         });
+//         const data = await res.json();
+//         loader.style.display = 'none';
+//         if (res.ok) {
+//             showToast('Book borrowed successfully!', 'success');
+//             fetchBooks();
+//         } else {
+//             showToast(data.msg || 'Failed to borrow book', 'error');
+//         }
+//     } catch (err) {
+//         loader.style.display = 'none';
+//         showToast('Error borrowing book.', 'error');
+//         console.error(err);
+//     }
+// }
+
+// // Search Handler
+// searchInput.addEventListener('input', () => {
+//     const query = searchInput.value.trim();
+//     fetchBooks(query);
+// });
+
+// // Init
+// checkAuth();

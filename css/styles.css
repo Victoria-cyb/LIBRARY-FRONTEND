@@ -286,6 +286,42 @@ body {
     animation: spin 1s linear infinite;
 }
 
+/* Google Login Button */
+.google-login-btn {
+    background: #4285f4; /* Google’s blue */
+    color: #fff;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: background 0.3s ease, transform 0.3s ease;
+    max-width: 250px;
+    margin: 1rem auto; /* Center it */
+}
+
+.google-login-btn:hover {
+    background: #357abd; /* Darker blue on hover */
+    transform: translateY(-2px);
+}
+
+.google-login-btn:active {
+    transform: translateY(0);
+}
+
+/* Optional: Icon styling if you add one */
+.google-login-btn::before {
+    content: url('https://www.google.com/favicon.ico'); /* Google favicon */
+    margin-right: 0.5rem;
+    vertical-align: middle;
+}
+
 /* Toast Notifications */
 .toast {
     position: fixed;

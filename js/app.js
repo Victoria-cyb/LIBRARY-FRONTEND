@@ -1,5 +1,19 @@
 const API_BASE = 'https://library-api-s5aw.onrender.com';
 
+// Add this new function
+function handleOAuthCallback() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get('token');
+    if (token) {
+      localStorage.setItem('token', token);
+      const decoded = jwt_decode(token); // Add jwt-decode library: <script src="https://unpkg.com/jwt-decode@3.1.2/build/jwt-decode.js"></script>
+      localStorage.setItem('userId', decoded.userId);
+      localStorage.setItem('username', decoded.name);
+      window.location.hash = '#/dashboard'; // Redirect to dashboard
+      window.history.replaceState({}, document.title, window.location.pathname + '#/dashboard'); // Clean URL
+    }
+  }
+
 const views = {
     home: document.getElementById('viewHome'),
     books: document.getElementById('viewBooks'),
@@ -22,6 +36,7 @@ const elements = {
 // Initialization
 window.onload = () => {
     checkAuth();
+    handleOAuthCallback(); // Check for token on load
     route();
 };
 
@@ -189,6 +204,7 @@ function showAuth() {
             <input type="email" id="loginEmail" placeholder="Email" required>
             <input type="password" id="loginPassword" placeholder="Password" required>
             <button type="submit">Login</button>
+            <button onclick="window.location.href='${API_BASE}/api/auth/google'">Login with Google</button>
         </form>
     `;
 }
